@@ -5,15 +5,14 @@ body {
 }
 
 .container {
-  width: 800px;
+  max-width: 800px;
   margin: 30px auto;
   color: white;
   text-align: center;
 }
 
 h1,
-h2,
-h3 {
+h2 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 100;
   font-size: 2.6rem;
@@ -22,23 +21,56 @@ h3 {
 
 #seconds,
 #tens {
-  font-size: rem;
+  font-size: 2em;
 }
 
-button {
+.control-btns {
   width: 150px;
-  height: 50px;
+  height: 30px;
   background: transparent;
   color: white;
   border: 2px solid white;
-  border-radius: 5px;
+  border-radius: 2px;
   margin-right: 10px;
   outline: none;
 }
-
-button:hover {
+.submit {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 2px;
+  margin-right: 10px;
+  outline: none;
+}
+.control-btns:hover,
+.submit:hover {
   background-color: white;
   color: #52c2ff;
-  font-weight: 800px;
+  font-weight: 800;
   text-transform: capitalize;
+}
+
+.dashboard {
+  padding-top: 50px;
+}
+
+.dash-container {
+  width: 100%;
+  background-color: white;
+}
+
+.times {
+  display: flex;
+}
+.project {
+  display: flex;
+  padding: 10px;
+  text-align: left;
+  color: #52c2ff;
+  border-bottom: 2px solid #52c2ff;
+  justify-content: space-between;
+}
+
+.onOffBtn {
+  margin-right: 25px;
 }

@@ -11,14 +11,31 @@
     <div class="container">
       <img src="clock.img" alt="clock" />
       <h1>Time Tracker</h1>
-      <p><span id="seconds">00</span>: <span id="tens"></span></p>
-      <button id="button-start">start</button>
-      <button id="button-stop">stop</button>
-      <button id="button-reset">reset</button>
-      <div class="time"></div>
+      <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+      <button class="control-btns" id="button-start">start</button>
+      <button class="control-btns" id="button-stop">stop</button>
+      <button class="control-btns" id="button-reset">reset</button>
       <div class="dashboard">
-        <h2>Dashboard</h2>
+        <span>Enter a task</span>
+        <input id="task-input" type="text" />
+        <button id="task-submit" class="submit" type="submit">+</button>
+        <section>
+          <div class="tracker">
+            <h2>Dashboard</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. A ut
+              eaque tenetur dolore consequuntur, aut, tempore quos natus esse
+              porro velit. Perspiciatis, ipsum, hic aspernatur dolore sint, nisi
+              id eaque quod numquam assumenda voluptas velit.
+            </p>
+            <div class="dash-container">
+              <div id="times"></div>
+            </div>
+          </div>
+        </section>
+        <!-- end tracker -->
       </div>
+      <script src="script.js"></script>
     </div>
     <!-- end container -->
   </body>
