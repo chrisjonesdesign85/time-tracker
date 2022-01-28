@@ -7,6 +7,7 @@ let buttonStart = document.getElementById("button-start");
 let buttonStop = document.getElementById("button-stop");
 let buttonReset = document.getElementById("button-reset");
 let interval; // to store the timer values
+const projects = [] //store projects
 
 let input = document.getElementById("task-input");
 let submit = document.getElementById("task-submit")
@@ -67,6 +68,8 @@ let addProject = () => {
     del.classList.add("delete")
     newDiv.appendChild(toolBox);
     document.getElementById("times").appendChild(newDiv);
+    project(input)
+    
     
 }
 
@@ -75,7 +78,44 @@ let deleteButton = () => {
     console.log("delete")
 }
 
-submit.addEventListener("click", addProject);
+submit.addEventListener("click", (addProject) => {
+    addProject.preventDefault()
+    alertMessage(input)
+});
  
-let delBtn = document.querySelector(".delete")
-delBtn.addEventListener("click", deleteButton)
+// let delBtn = document.querySelector(".delete")
+// delBtn.addEventListener("click", deleteButton)
+
+
+//create an alert when there is nothing in input
+const alertMessage = () => {
+        let text = input.value
+        if ( text === "") {
+            alert('Add a Project')
+        } else {
+            addProject()
+    }
+
+}
+    
+// save tasks to storage
+const saveProjects = () => {
+        localStorage.setItem('projects', JSON.stringify(projects))
+    }
+    
+
+ // save project object   
+const project = (input) => {
+    if (input.length > 0) {
+        projects.push({
+            title: input,
+            id: '',
+            startTime: '',
+            endTime: '', 
+        })
+        saveProjects()
+    }
+    
+}
+
+    
