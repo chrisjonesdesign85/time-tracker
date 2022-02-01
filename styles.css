@@ -2,7 +2,7 @@ body {
   background-image: url(./timetracker-bg.jpg);
   background-color: #362c2d;
   background-repeat: no-repeat;
-  background-position: center;
+  /* background-position: center; */
   font-family: Arial, Helvetica, sans-serif;
   background-size: cover;
 }
@@ -61,7 +61,6 @@ h2 {
 
 .dash-container {
   width: 100%;
-  background-color: white;
 }
 
 .times {
@@ -71,9 +70,11 @@ h2 {
   display: flex;
   padding: 10px;
   text-align: left;
-  color: #52c2ff;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-bottom: 3px solid #52c2ff;
+  color: #fff;
+  background: transparent;
+  background: rgba(7, 7, 7, 0.2);
+  border-bottom: 3px solid #fff;
+  margin-bottom: 20px;
   justify-content: space-between;
   align-items: center;
 }
@@ -95,10 +96,6 @@ h2 {
   color: #52c2ff;
   font-size: 1.8rem;
   align-items: center;
-}
-
-.timerToggle {
-  background-color: #52c2ff;
 }
 
 .playBtn,
