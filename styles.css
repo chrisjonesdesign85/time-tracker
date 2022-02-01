@@ -1,5 +1,8 @@
 body {
-  background: #52c2ff;
+  background-image: url(./timetracker-bg.jpg);
+  background-repeat: no-repeat;
+  /* background-size: */
+  /* background: #52c2ff; */
   font-family: Arial, Helvetica, sans-serif;
   height: 100%;
 }
@@ -20,7 +23,9 @@ h2 {
 }
 
 #seconds,
-#tens {
+#tens,
+#mins,
+#hrs {
   font-size: 2em;
 }
 
@@ -73,12 +78,27 @@ h2 {
 }
 
 .project h3 {
+  display: flex;
   margin: 0;
   padding: 0;
   color: #52c2ff;
   text-transform: capitalize;
 }
 
+.projectBox {
+  display: flex;
+}
+
+#timer {
+  margin-right: 20px;
+  color: #52c2ff;
+  font-size: 1.8rem;
+  align-items: center;
+}
+
+.timerToggle {
+  background-color: #52c2ff;
+}
 .playBtn,
 .stopBtn,
 .delete {
