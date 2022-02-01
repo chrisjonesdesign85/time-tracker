@@ -1,10 +1,10 @@
 body {
   background-image: url(./timetracker-bg.jpg);
+  background-color: #362c2d;
   background-repeat: no-repeat;
-  /* background-size: */
-  /* background: #52c2ff; */
+  background-position: center;
   font-family: Arial, Helvetica, sans-serif;
-  height: 100%;
+  background-size: cover;
 }
 
 .container {
@@ -72,7 +72,8 @@ h2 {
   padding: 10px;
   text-align: left;
   color: #52c2ff;
-  border-bottom: 2px solid #52c2ff;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-bottom: 3px solid #52c2ff;
   justify-content: space-between;
   align-items: center;
 }
@@ -99,6 +100,7 @@ h2 {
 .timerToggle {
   background-color: #52c2ff;
 }
+
 .playBtn,
 .stopBtn,
 .delete {
