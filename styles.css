@@ -69,8 +69,25 @@ h2 {
   color: #52c2ff;
   border-bottom: 2px solid #52c2ff;
   justify-content: space-between;
+  align-items: center;
 }
 
-.onOffBtn {
+.project h3 {
+  margin: 0;
+  padding: 0;
+  color: #52c2ff;
+  text-transform: capitalize;
+}
+
+.playBtn,
+.stopBtn,
+.delete {
   margin-right: 25px;
+  color: white;
+  background-color: #52c2ff;
+  border-radius: 20%;
+  border: none;
+  padding: 10px;
+
+  /* background-color: darkgray; */
 }

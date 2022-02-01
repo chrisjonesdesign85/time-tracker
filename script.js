@@ -50,43 +50,80 @@ buttonReset.onclick = function() {
     appendTens.innerHTML = tens;
 }
 
+
+
+
 let addProject = () => {
-    console.log("hello")
-    let input = document.getElementById("task-input").value; 
+    //create project DIV
     let newDiv = document.createElement("div")
-    let newCont = document.createTextNode(input)
-    let toolBox = document.createElement("div")
-    let del = document.createElement("button")
-    let onBtn = document.createElement("button")
     newDiv.classList.add("project")
-    newDiv.appendChild(newCont);
-    onBtn.innerHTML = "ON/OFF"
-    onBtn.classList.add("onOffBtn")
-    toolBox.appendChild(onBtn);
-    toolBox.appendChild(del);
-    del.innerHTML = "X";
+    //create project inner div
+    let projectBox = document.createElement("div")
+    //title of Project from input field
+    // get input text
+    let input = document.getElementById("task-input").value;
+    // newDiv.appendChild(newCont);
+    let h3 = document.createElement("h3")
+    h3.innerHTML = input
+    newDiv.appendChild(h3)
+    
+    let cap = h3.textContent
+    cap.toUpperCase()
+    console.log(h3.textContent)
+
+    
+    // create an play button
+    let playBtn = document.createElement("button")
+    playBtn.innerHTML = '<i class="fas fa-play"></i>'
+
+    playBtn.classList.add("playBtn")
+    playBtn.addEventListener('click', () => {
+        console.log("play")
+    })
+
+    let stopBtn = document.createElement("button")
+    stopBtn.innerHTML = '<i class="fas fa-stop"></i>'
+    stopBtn.classList.add("stopBtn")
+
+    stopBtn.addEventListener('click', () => {
+        console.log("stop")
+    } )
+
+    // create a delete button
+    let del = document.createElement("button")
     del.classList.add("delete")
-    newDiv.appendChild(toolBox);
+
+    
+    projectBox.appendChild(playBtn);
+    projectBox.appendChild(stopBtn)
+    projectBox.appendChild(del);
+    del.innerHTML = "X";
+    
+    newDiv.appendChild(projectBox);
     document.getElementById("times").appendChild(newDiv);
-    project(input)
-    
-    
+
+    // delete a project
+    del.addEventListener('click', (e) => {
+        e.stopPropagation();
+        let res = confirm('Do you want to delete this project?');
+        if (res == true) {
+            times.removeChild(newDiv);
+        } else {
+            return true;
+        }
+    })
+    let formText = document.getElementById("task-input")
+    formText.value = ""
 }
 
-let deleteButton = () => {
-   
-    console.log("delete")
-}
+
 
 submit.addEventListener("click", (addProject) => {
     addProject.preventDefault()
     alertMessage(input)
+    
 });
  
-// let delBtn = document.querySelector(".delete")
-// delBtn.addEventListener("click", deleteButton)
-
-
 //create an alert when there is nothing in input
 const alertMessage = () => {
         let text = input.value
@@ -94,10 +131,14 @@ const alertMessage = () => {
             alert('Add a Project')
         } else {
             addProject()
+        
     }
 
 }
-    
+
+
+
+
 // save tasks to storage
 const saveProjects = () => {
         localStorage.setItem('projects', JSON.stringify(projects))
