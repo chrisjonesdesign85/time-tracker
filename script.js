@@ -41,6 +41,7 @@ function startTimer() {
     if (seconds > 9){
         appendSeconds.innerHTML = seconds;
 
+<<<<<<< HEAD
     }
     if (seconds < 9){
         appendSeconds.innerHTML = "0" + seconds;
@@ -56,6 +57,23 @@ function startTimer() {
         appendHrs.innerHTML = "0" + hr
         min = 00
     }
+=======
+    }
+    if (seconds < 9){
+        appendSeconds.innerHTML = "0" + seconds;
+    }
+    if(seconds == 60) {
+        min++
+        appendMins.innerHTML = "0" + min;
+        seconds = 00;
+    }
+
+    if (min == 60) {
+        hr++
+        appendHrs.innerHTML = "0" + hr
+        min = 00
+    }
+>>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
 
 }
 
@@ -102,6 +120,7 @@ let addProject = () => {
     // give the span an id of timer.
     timeTxt.id = "timer"
     // set the timer to 00
+<<<<<<< HEAD
     // timeTxt.innerHTML = ''
     const Clock= {
                 totalSeconds: 0,
@@ -142,11 +161,18 @@ let addProject = () => {
                    Clock.start();
                 }
               }
+=======
+    timeTxt.innerHTML = "00"
+      
+
+
+>>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
 
     // create a play button
     let playBtn = document.createElement("button")
     playBtn.innerHTML = '<i class="fas fa-play"></i>'
     playBtn.classList.add("playBtn")
+<<<<<<< HEAD
     
     playBtn.addEventListener('click', () => {
         console.log("play")
@@ -198,6 +224,52 @@ let addProject = () => {
 
 }
 
+=======
+    
+    playBtn.addEventListener('click', () => {
+        console.log("play")
+        playBtn.style.backgroundColor = "lightblue"
+        interval = setInterval(startTimer)
+    })
+
+    let stopBtn = document.createElement("button")
+    stopBtn.innerHTML = '<i class="fas fa-stop"></i>'
+    stopBtn.classList.add("stopBtn")
+    stopBtn.addEventListener('click', () => {
+        console.log("stop")
+        clearInterval(interval)
+    } )
+
+    // create a delete button
+    let del = document.createElement("button")
+    del.innerHTML='<i class="fas fa-trash"></i>'
+    del.classList.add("delete")
+
+    projectBox.appendChild(timeTxt)
+    projectBox.appendChild(playBtn);
+    projectBox.appendChild(stopBtn)
+    projectBox.appendChild(del);
+    
+    newDiv.appendChild(projectBox);
+    document.getElementById("times").appendChild(newDiv);
+
+    // delete a project
+    del.addEventListener('click', (e) => {
+        e.stopPropagation();
+        let res = confirm('Do you want to delete this project?');
+        if (res == true) {
+            times.removeChild(newDiv);
+        } else {
+            return true;
+        }
+    })
+    let formText = document.getElementById("task-input")
+    formText.value = ""
+}
+
+
+
+>>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
 //run addProject when the submit button is clicked.
 submit.addEventListener("click", (addProject) => {
     addProject.preventDefault()
@@ -220,7 +292,11 @@ const alertMessage = () => {
 
 
 
+<<<<<<< HEAD
 // save projects to storage
+=======
+// save tasks to storage
+>>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
 const saveProjects = () => {
         localStorage.setItem('projects', JSON.stringify(projects))
 }
