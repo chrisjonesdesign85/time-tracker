@@ -1,104 +1,12 @@
 //main JS
-let seconds = 00;
-let tens = 00;
-let min = 00;
-let hr = 00;
-
-let appendTens = document.getElementById("tens");
-let appendSeconds = document.getElementById("seconds");
-let appendMins = document.getElementById("mins");
-let appendHrs = document.getElementById("hrs")
-let buttonStart = document.getElementById("button-start");
-let buttonStop = document.getElementById("button-stop");
-let buttonReset = document.getElementById("button-reset");
 let interval; // to store the timer values
-const projects = [] //store projects
-
-
+let projects = [];
 let input = document.getElementById("task-input");
 let submit = document.getElementById("task-submit")
 let times = document.getElementById("times")
 
-//this function will run when start is clicked
-function startTimer() {
-    tens++;
-    if(tens < 9) {
-        // appendTens.innerHTML= "0" + tens;
-    }
-    if (tens > 9) {
-        // appendTens.innerHTML =  tens;
-    }
-    // if (tens > 10)
-    if(tens > 254) {
-        seconds++
-        appendSeconds.innerHTML = "0" + seconds;
-        tens = 0;
-        // appendSeconds.innerHTML = "0" + 0;
-    }
-    if (seconds > 0){
-        appendSeconds.innerHTML = "0" + seconds;
-    }
-    if (seconds > 9){
-        appendSeconds.innerHTML = seconds;
 
-<<<<<<< HEAD
-    }
-    if (seconds < 9){
-        appendSeconds.innerHTML = "0" + seconds;
-    }
-    if(seconds == 60) {
-        min++
-        appendMins.innerHTML = "0" + min;
-        seconds = 00;
-    }
-
-    if (min == 60) {
-        hr++
-        appendHrs.innerHTML = "0" + hr
-        min = 00
-    }
-=======
-    }
-    if (seconds < 9){
-        appendSeconds.innerHTML = "0" + seconds;
-    }
-    if(seconds == 60) {
-        min++
-        appendMins.innerHTML = "0" + min;
-        seconds = 00;
-    }
-
-    if (min == 60) {
-        hr++
-        appendHrs.innerHTML = "0" + hr
-        min = 00
-    }
->>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
-
-}
-
-buttonStart.onclick = function() {
-    interval = setInterval(startTimer)
-};
-
-buttonStop.onclick = function () {
-    clearInterval(interval);
-};
-
-buttonReset.onclick = function() {
-    clearInterval(interval);
-    tens = "00";
-    seconds = "00";
-    minutes = "00";
-    hours = "00"
-    appendSeconds.innerHTML = seconds;
-    appendMins.innerHTML = minutes;
-    appendHrs.innerHTML = hours;
-}
-
-
-
-
+// add a project when the '+' button is clicked
 let addProject = () => {
     //create project DIV
     let newDiv = document.createElement("div")
@@ -119,9 +27,7 @@ let addProject = () => {
     let timeTxt = document.createElement("span")
     // give the span an id of timer.
     timeTxt.id = "timer"
-    // set the timer to 00
-<<<<<<< HEAD
-    // timeTxt.innerHTML = ''
+
     const Clock= {
                 totalSeconds: 0,
                 start: function () {
@@ -143,8 +49,6 @@ let addProject = () => {
                 reset: function () {
                   Clock.totalSeconds = null; 
                   clearInterval(this.interval);
-                //   document.getElementById("min").innerHTML = "00";
-                //   document.getElementById("sec").innerHTML = "00";
                   delete this.interval;
                 },
                 pause: function () {
@@ -161,18 +65,11 @@ let addProject = () => {
                    Clock.start();
                 }
               }
-=======
-    timeTxt.innerHTML = "00"
-      
-
-
->>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
 
     // create a play button
     let playBtn = document.createElement("button")
     playBtn.innerHTML = '<i class="fas fa-play"></i>'
     playBtn.classList.add("playBtn")
-<<<<<<< HEAD
     
     playBtn.addEventListener('click', () => {
         console.log("play")
@@ -187,7 +84,6 @@ let addProject = () => {
     stopBtn.addEventListener('click', () => {
         console.log("stop")
         Clock.pause()
-        
         
     })
 
@@ -213,68 +109,16 @@ let addProject = () => {
         } else {
             return true;
         }
-       
     })
     let formText = document.getElementById("task-input")
     formText.value = ""
-   
-    
     project(input, Clock)
-    
-
 }
 
-=======
-    
-    playBtn.addEventListener('click', () => {
-        console.log("play")
-        playBtn.style.backgroundColor = "lightblue"
-        interval = setInterval(startTimer)
-    })
-
-    let stopBtn = document.createElement("button")
-    stopBtn.innerHTML = '<i class="fas fa-stop"></i>'
-    stopBtn.classList.add("stopBtn")
-    stopBtn.addEventListener('click', () => {
-        console.log("stop")
-        clearInterval(interval)
-    } )
-
-    // create a delete button
-    let del = document.createElement("button")
-    del.innerHTML='<i class="fas fa-trash"></i>'
-    del.classList.add("delete")
-
-    projectBox.appendChild(timeTxt)
-    projectBox.appendChild(playBtn);
-    projectBox.appendChild(stopBtn)
-    projectBox.appendChild(del);
-    
-    newDiv.appendChild(projectBox);
-    document.getElementById("times").appendChild(newDiv);
-
-    // delete a project
-    del.addEventListener('click', (e) => {
-        e.stopPropagation();
-        let res = confirm('Do you want to delete this project?');
-        if (res == true) {
-            times.removeChild(newDiv);
-        } else {
-            return true;
-        }
-    })
-    let formText = document.getElementById("task-input")
-    formText.value = ""
-}
-
-
-
->>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
 //run addProject when the submit button is clicked.
 submit.addEventListener("click", (addProject) => {
     addProject.preventDefault()
     alertMessage(input)
-    
 });
  
 //create an alert when there is nothing in input
@@ -284,35 +128,15 @@ const alertMessage = () => {
             alert('Add a Project')
         } else {
             addProject()
-        
     }
-
 }
 
-
-
-
-<<<<<<< HEAD
 // save projects to storage
-=======
-// save tasks to storage
->>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
 const saveProjects = () => {
-        localStorage.setItem('projects', JSON.stringify(projects))
-}
+    localStorage.setItem("projects", JSON.stringify(projects))        
+}   
 
-//load projects from storage
-const loadProjects = () => {
-    const projectsJSON = localStorage.getItem('projects')
 
-    try {
-        return projectsJSON ? JSON.parse(projectsJSON) : []
-    } catch (e) {
-        return []
-    }
-    
-}
-    
 
  // save project object   
 const project = (input, Clock) => {
@@ -320,17 +144,21 @@ const project = (input, Clock) => {
     if (input.length > 0) {
         projects.push({
             title: input,
-            id: '',
             Clock
         })
-    
         saveProjects()
-    }
-    
+    } 
 }
 
-// document.getElementById("startButton").addEventListener("click", function () { Clock.start(); });
-// document.getElementById("pauseButton").addEventListener("click", function () { Clock.pause(); });
-// document.getElementById("resumeButton").addEventListener("click", function () { Clock.resume(); });
-// document.getElementById("resetButton").addEventListener("click", function () { Clock.reset(); });
-// ocument.getElementById("restartButton").addEventListener("click", function () { Clock.restart(); });
+//load projects from storage
+const loadProjects = () => {
+    JSON.parse(localStorage.getItem("projects")) || []; //store projects
+
+    try {
+        return projects ? JSON.parse(projects) : []
+    } catch (e) {
+        return []
+    }
+   
+}
+
