@@ -12,7 +12,7 @@ let buttonStart = document.getElementById("button-start");
 let buttonStop = document.getElementById("button-stop");
 let buttonReset = document.getElementById("button-reset");
 let interval; // to store the timer values
-const projects = [] //store projects
+let projects = [] //store projects
 
 
 let input = document.getElementById("task-input");
@@ -41,7 +41,6 @@ function startTimer() {
     if (seconds > 9){
         appendSeconds.innerHTML = seconds;
 
-<<<<<<< HEAD
     }
     if (seconds < 9){
         appendSeconds.innerHTML = "0" + seconds;
@@ -57,23 +56,6 @@ function startTimer() {
         appendHrs.innerHTML = "0" + hr
         min = 00
     }
-=======
-    }
-    if (seconds < 9){
-        appendSeconds.innerHTML = "0" + seconds;
-    }
-    if(seconds == 60) {
-        min++
-        appendMins.innerHTML = "0" + min;
-        seconds = 00;
-    }
-
-    if (min == 60) {
-        hr++
-        appendHrs.innerHTML = "0" + hr
-        min = 00
-    }
->>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
 
 }
 
@@ -120,9 +102,8 @@ let addProject = () => {
     // give the span an id of timer.
     timeTxt.id = "timer"
     // set the timer to 00
-<<<<<<< HEAD
     // timeTxt.innerHTML = ''
-    const Clock= {
+    let Clock= {
                 totalSeconds: 0,
                 start: function () {
                   if (!this.interval) {
@@ -161,18 +142,11 @@ let addProject = () => {
                    Clock.start();
                 }
               }
-=======
-    timeTxt.innerHTML = "00"
-      
-
-
->>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
 
     // create a play button
     let playBtn = document.createElement("button")
     playBtn.innerHTML = '<i class="fas fa-play"></i>'
     playBtn.classList.add("playBtn")
-<<<<<<< HEAD
     
     playBtn.addEventListener('click', () => {
         console.log("play")
@@ -209,11 +183,13 @@ let addProject = () => {
         e.stopPropagation();
         let res = confirm('Do you want to delete this project?');
         if (res == true) {
-            times.removeChild(newDiv);
+            times.removeChild(newDiv)
+            removeProject(input);
+
         } else {
             return true;
         }
-       
+       saveProjects()
     })
     let formText = document.getElementById("task-input")
     formText.value = ""
@@ -224,52 +200,17 @@ let addProject = () => {
 
 }
 
-=======
-    
-    playBtn.addEventListener('click', () => {
-        console.log("play")
-        playBtn.style.backgroundColor = "lightblue"
-        interval = setInterval(startTimer)
-    })
+// remove project from storage
+const removeProject = (title) => {
+const projectTitle = projects.findIndex(function (project) {
+    return project.title === title
+})
 
-    let stopBtn = document.createElement("button")
-    stopBtn.innerHTML = '<i class="fas fa-stop"></i>'
-    stopBtn.classList.add("stopBtn")
-    stopBtn.addEventListener('click', () => {
-        console.log("stop")
-        clearInterval(interval)
-    } )
-
-    // create a delete button
-    let del = document.createElement("button")
-    del.innerHTML='<i class="fas fa-trash"></i>'
-    del.classList.add("delete")
-
-    projectBox.appendChild(timeTxt)
-    projectBox.appendChild(playBtn);
-    projectBox.appendChild(stopBtn)
-    projectBox.appendChild(del);
-    
-    newDiv.appendChild(projectBox);
-    document.getElementById("times").appendChild(newDiv);
-
-    // delete a project
-    del.addEventListener('click', (e) => {
-        e.stopPropagation();
-        let res = confirm('Do you want to delete this project?');
-        if (res == true) {
-            times.removeChild(newDiv);
-        } else {
-            return true;
-        }
-    })
-    let formText = document.getElementById("task-input")
-    formText.value = ""
+if (projectTitle > -1) {
+        projects.splice(projectTitle, 1)
 }
-
-
-
->>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
+    saveProjects()
+}
 //run addProject when the submit button is clicked.
 submit.addEventListener("click", (addProject) => {
     addProject.preventDefault()
@@ -292,11 +233,7 @@ const alertMessage = () => {
 
 
 
-<<<<<<< HEAD
 // save projects to storage
-=======
-// save tasks to storage
->>>>>>> 5b495a5db18a33190c2b4622a3954d08c18381b2
 const saveProjects = () => {
         localStorage.setItem('projects', JSON.stringify(projects))
 }
@@ -306,9 +243,9 @@ const loadProjects = () => {
     const projectsJSON = localStorage.getItem('projects')
 
     try {
-        return projectsJSON ? JSON.parse(projectsJSON) : []
+        projects = projectsJSON ? JSON.parse(projectsJSON) : []
     } catch (e) {
-        return []
+        projects = []
     }
     
 }
@@ -327,6 +264,24 @@ const project = (input, Clock) => {
         saveProjects()
     }
     
+}
+
+
+
+window.addEventListener('storage', (e) => {
+    if (e.key === 'projects') {
+        loadProjects()
+        renderProjects()
+    }
+})
+
+const renderProjects = () => {
+
+    if (projects.length > 0) {
+        projects.forEach((project) => {
+            document.querySelector('#dash-container').appendChild(addProject())
+        })
+    }
 }
 
 // document.getElementById("startButton").addEventListener("click", function () { Clock.start(); });
