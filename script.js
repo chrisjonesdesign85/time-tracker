@@ -190,17 +190,5 @@ window.addEventListener('storage', (e) => {
     }
 })
 
-const renderProjects = () => {
 
-    if (projects.length > 0) {
-        projects.forEach((project) => {
-            document.querySelector('#dash-container').appendChild(addProject())
-        })
-    }
-}
 
-// document.getElementById("startButton").addEventListener("click", function () { Clock.start(); });
-// document.getElementById("pauseButton").addEventListener("click", function () { Clock.pause(); });
-// document.getElementById("resumeButton").addEventListener("click", function () { Clock.resume(); });
-// document.getElementById("resetButton").addEventListener("click", function () { Clock.reset(); });
-// ocument.getElementById("restartButton").addEventListener("click", function () { Clock.restart(); });
