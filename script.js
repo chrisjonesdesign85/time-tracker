@@ -6,64 +6,6 @@ let submit = document.getElementById("task-submit")
 let times = document.getElementById("times")
 
 
-//this function will run when start is clicked
-function startTimer() {
-    tens++;
-    if(tens < 9) {
-        // appendTens.innerHTML= "0" + tens;
-    }
-    if (tens > 9) {
-        // appendTens.innerHTML =  tens;
-    }
-    // if (tens > 10)
-    if(tens > 254) {
-        seconds++
-        appendSeconds.innerHTML = "0" + seconds;
-        tens = 0;
-        // appendSeconds.innerHTML = "0" + 0;
-    }
-    if (seconds > 0){
-        appendSeconds.innerHTML = "0" + seconds;
-    }
-    if (seconds > 9){
-        appendSeconds.innerHTML = seconds;
-
-    }
-    if (seconds < 9){
-        appendSeconds.innerHTML = "0" + seconds;
-    }
-    if(seconds == 60) {
-        min++
-        appendMins.innerHTML = "0" + min;
-        seconds = 00;
-    }
-
-    if (min == 60) {
-        hr++
-        appendHrs.innerHTML = "0" + hr
-        min = 00
-    }
-
-}
-
-buttonStart.onclick = function() {
-    interval = setInterval(startTimer)
-};
-
-buttonStop.onclick = function () {
-    clearInterval(interval);
-};
-
-buttonReset.onclick = function() {
-    clearInterval(interval);
-    tens = "00";
-    seconds = "00";
-    minutes = "00";
-    hours = "00"
-    appendSeconds.innerHTML = seconds;
-    appendMins.innerHTML = minutes;
-    appendHrs.innerHTML = hours;
-}
 
 // add a project when the '+' button is clicked
 let addProject = () => {
