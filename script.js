@@ -33,11 +33,11 @@ let addProject = () => {
     // timeTxt.innerHTML = ''
 
     
+    
 let time = timeTxt.textContent
 
-    saveLocalProjects(h3.textContent, time)
-    console.log(h3.textContent, time)
-
+    saveLocalProjects(h3.textContent)
+    console.log(h3.textContent)
     let Clock= {
                 totalSeconds: 0,
                 start: function () {
@@ -122,16 +122,13 @@ let time = timeTxt.textContent
         } else {
             return true;
         }
-    //    saveProjects()
-       saveLocalProjects();
-
-       saveProjects()
-
     })
     let formText = document.getElementById("task-input")
     formText.value = ""
-    project(input, Clock)
+    project(input)
 }
+
+
 
 // remove project from storage
 const removeProject = (title) => {
@@ -142,11 +139,8 @@ const projectTitle = projects.findIndex(function (project) {
 if (projectTitle > -1) {
         projects.splice(projectTitle, 1)
 }
-  
+    // saveProjects()
     saveLocalProjects();
-
-    saveProjects()
-
 }
 
 //run addProject when the submit button is clicked.
@@ -165,6 +159,9 @@ const alertMessage = () => {
             
     }
 }
+
+
+
 
 
 
@@ -294,18 +291,31 @@ e.stopPropagation();
 let res = confirm('Do you want to delete this project?');
 if (res == true) {
     times.removeChild(newDiv)
-    removeProject(input);
+    removeLocalProjects(input);
 
 } else {
     return true;
 }
-//    saveProjects()
-// saveLocalProjects();
+removeLocalProjects(project)
 })
+
 let formText = document.getElementById("task-input")
 formText.value = ""
 
 });
+}
+const removeLocalProjects = (project) => {
+    // check to see if there is a localStorage
+    let projects;
+    if (localStorage.getItem("projects") === null) {
+        projects = [];
+    } else {
+        projects = JSON.parse(localStorage.getItem("projects"))
+    }
+    const projectIndex = projects.indexOf(project)
+    projects.splice(projectIndex, 1)
+    localStorage.setItem('projects', JSON.stringify(projects))
+
 }
 
 
@@ -332,30 +342,11 @@ formText.value = ""
 
 //  // save project object   
 const project = (input) => {
-    }
-}
-
-// save projects to storage
-const saveProjects = () => {
-    localStorage.setItem("projects", JSON.stringify(projects))        
-}   
-
-    try {
-        projects = projectsJSON ? JSON.parse(projectsJSON) : []
-    } catch (e) {
-        projects = []
-    }
-
-
- // save project object   
-const project = (input, Clock) => {
     
     if (input.length > 0) {
         projects.push({
             title: input,
-            timeTxt
         })
-        saveLocalProjects();
     } 
 }
 
@@ -377,28 +368,3 @@ const project = (input, Clock) => {
 //         renderProjects()
 //     }
 // })
-            Clock
-        })
-        saveProjects()
-    } 
-}
-
-//load projects from storage
-const loadProjects = () => {
-    JSON.parse(localStorage.getItem("projects")) || []; //store projects
-
-    try {
-        return projects ? JSON.parse(projects) : []
-    } catch (e) {
-        return []
-    }
-   
-}
-
-window.addEventListener('storage', (e) => {
-    if (e.key === 'projects') {
-        loadProjects()
-        renderProjects()
-    }
-})
-
