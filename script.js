@@ -5,6 +5,11 @@ let input = document.getElementById("task-input");
 let submit = document.getElementById("task-submit")
 let times = document.getElementById("times")
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 2f8a1ebce34a0e60bf880fb5a7f5a7ef97aaaab6
 // add a project when the '+' button is clicked
 let addProject = () => {
     //create project DIV
@@ -158,6 +163,7 @@ const saveProjects = () => {
     } catch (e) {
         projects = []
     }
+
 
  // save project object   
 const project = (input, Clock) => {
