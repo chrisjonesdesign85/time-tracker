@@ -1,23 +1,10 @@
 //main JS
-let seconds = 00;
-let tens = 00;
-let min = 00;
-let hr = 00;
-
-let appendTens = document.getElementById("tens");
-let appendSeconds = document.getElementById("seconds");
-let appendMins = document.getElementById("mins");
-let appendHrs = document.getElementById("hrs")
-let buttonStart = document.getElementById("button-start");
-let buttonStop = document.getElementById("button-stop");
-let buttonReset = document.getElementById("button-reset");
 let interval; // to store the timer values
 let projects = [] //store projects
-
-
 let input = document.getElementById("task-input");
 let submit = document.getElementById("task-submit")
 let times = document.getElementById("times")
+
 
 //this function will run when start is clicked
 function startTimer() {
@@ -78,9 +65,7 @@ buttonReset.onclick = function() {
     appendHrs.innerHTML = hours;
 }
 
-
-
-
+// add a project when the '+' button is clicked
 let addProject = () => {
     //create project DIV
     let newDiv = document.createElement("div")
@@ -103,7 +88,8 @@ let addProject = () => {
     timeTxt.id = "timer"
     // set the timer to 00
     // timeTxt.innerHTML = ''
-    let Clock= {
+  
+    const Clock= {
                 totalSeconds: 0,
                 start: function () {
                   if (!this.interval) {
@@ -124,8 +110,6 @@ let addProject = () => {
                 reset: function () {
                   Clock.totalSeconds = null; 
                   clearInterval(this.interval);
-                //   document.getElementById("min").innerHTML = "00";
-                //   document.getElementById("sec").innerHTML = "00";
                   delete this.interval;
                 },
                 pause: function () {
@@ -162,7 +146,6 @@ let addProject = () => {
         console.log("stop")
         Clock.pause()
         
-        
     })
 
     // create a delete button
@@ -193,11 +176,7 @@ let addProject = () => {
     })
     let formText = document.getElementById("task-input")
     formText.value = ""
-   
-    
     project(input, Clock)
-    
-
 }
 
 // remove project from storage
@@ -211,11 +190,11 @@ if (projectTitle > -1) {
 }
     saveProjects()
 }
+
 //run addProject when the submit button is clicked.
 submit.addEventListener("click", (addProject) => {
     addProject.preventDefault()
     alertMessage(input)
-    
 });
  
 //create an alert when there is nothing in input
@@ -225,22 +204,13 @@ const alertMessage = () => {
             alert('Add a Project')
         } else {
             addProject()
-        
     }
-
 }
-
-
-
 
 // save projects to storage
 const saveProjects = () => {
-        localStorage.setItem('projects', JSON.stringify(projects))
-}
-
-//load projects from storage
-const loadProjects = () => {
-    const projectsJSON = localStorage.getItem('projects')
+    localStorage.setItem("projects", JSON.stringify(projects))        
+}   
 
     try {
         projects = projectsJSON ? JSON.parse(projectsJSON) : []
@@ -249,7 +219,6 @@ const loadProjects = () => {
     }
     
 }
-    
 
  // save project object   
 const project = (input, Clock) => {
@@ -257,16 +226,23 @@ const project = (input, Clock) => {
     if (input.length > 0) {
         projects.push({
             title: input,
-            id: '',
             Clock
         })
-    
         saveProjects()
-    }
-    
+    } 
 }
 
+//load projects from storage
+const loadProjects = () => {
+    JSON.parse(localStorage.getItem("projects")) || []; //store projects
 
+    try {
+        return projects ? JSON.parse(projects) : []
+    } catch (e) {
+        return []
+    }
+   
+}
 
 window.addEventListener('storage', (e) => {
     if (e.key === 'projects') {
