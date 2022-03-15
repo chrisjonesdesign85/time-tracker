@@ -33,11 +33,11 @@ let addProject = () => {
     // timeTxt.innerHTML = ''
 
     
-    
 let time = timeTxt.textContent
 
     saveLocalProjects(h3.textContent, time)
     console.log(h3.textContent, time)
+
     let Clock= {
                 totalSeconds: 0,
                 start: function () {
@@ -124,13 +124,14 @@ let time = timeTxt.textContent
         }
     //    saveProjects()
        saveLocalProjects();
+
+       saveProjects()
+
     })
     let formText = document.getElementById("task-input")
     formText.value = ""
     project(input, Clock)
 }
-
-
 
 // remove project from storage
 const removeProject = (title) => {
@@ -141,8 +142,11 @@ const projectTitle = projects.findIndex(function (project) {
 if (projectTitle > -1) {
         projects.splice(projectTitle, 1)
 }
-    // saveProjects()
+  
     saveLocalProjects();
+
+    saveProjects()
+
 }
 
 //run addProject when the submit button is clicked.
@@ -161,9 +165,6 @@ const alertMessage = () => {
             
     }
 }
-
-
-
 
 
 
@@ -331,6 +332,23 @@ formText.value = ""
 
 //  // save project object   
 const project = (input) => {
+    }
+}
+
+// save projects to storage
+const saveProjects = () => {
+    localStorage.setItem("projects", JSON.stringify(projects))        
+}   
+
+    try {
+        projects = projectsJSON ? JSON.parse(projectsJSON) : []
+    } catch (e) {
+        projects = []
+    }
+
+
+ // save project object   
+const project = (input, Clock) => {
     
     if (input.length > 0) {
         projects.push({
@@ -359,3 +377,28 @@ const project = (input) => {
 //         renderProjects()
 //     }
 // })
+            Clock
+        })
+        saveProjects()
+    } 
+}
+
+//load projects from storage
+const loadProjects = () => {
+    JSON.parse(localStorage.getItem("projects")) || []; //store projects
+
+    try {
+        return projects ? JSON.parse(projects) : []
+    } catch (e) {
+        return []
+    }
+   
+}
+
+window.addEventListener('storage', (e) => {
+    if (e.key === 'projects') {
+        loadProjects()
+        renderProjects()
+    }
+})
+
