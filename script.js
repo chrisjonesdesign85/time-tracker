@@ -5,8 +5,11 @@ let input = document.getElementById("task-input");
 let submit = document.getElementById("task-submit")
 let times = document.getElementById("times")
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 2f8a1ebce34a0e60bf880fb5a7f5a7ef97aaaab6
 // add a project when the '+' button is clicked
 let addProject = () => {
     //create project DIV
@@ -31,7 +34,7 @@ let addProject = () => {
     // set the timer to 00
     // timeTxt.innerHTML = ''
   
-    const Clock= {
+    let Clock= {
                 totalSeconds: 0,
                 start: function () {
                   if (!this.interval) {
@@ -68,6 +71,7 @@ let addProject = () => {
                    Clock.start();
                 }
               }
+  
 
     // create a play button
     let playBtn = document.createElement("button")
@@ -159,7 +163,6 @@ const saveProjects = () => {
     } catch (e) {
         projects = []
     }
-    
 
 
  // save project object   
