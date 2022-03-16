@@ -138,7 +138,7 @@ const projectTitle = projects.findIndex(function (project) {
 if (projectTitle > -1) {
         projects.splice(projectTitle, 1)
 }
-    saveLocalProjects();
+
 }
 
 //run addProject when the submit button is clicked.
